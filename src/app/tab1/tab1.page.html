@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Blog Posts</ion-title>
+    <ion-buttons slot="end">
+      <ion-button href="/tabs/add-post">Add Post</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="list">
+    <ion-item *ngFor="let post of posts">
+      <ion-label>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['/tabs/add-post']" [queryParams]="{ id: post.id }">
+          Edit
+        </ion-button>
+        <ion-button color="danger" (click)="deletePost(post.id)">Delete</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

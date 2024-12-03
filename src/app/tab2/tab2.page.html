@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Add Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-padding">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input
+        [(ngModel)]="post.title"
+        placeholder="Enter title"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Content</ion-label>
+      <ion-textarea
+        [(ngModel)]="post.content"
+        placeholder="Write your post..."
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="savePost()">
+      Save Post
+    </ion-button>
+  </ion-card>
+</ion-content>
