@@ -9,7 +9,7 @@ export const routes: Routes = [
       {
         path: 'index',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../signup/signup.component').then((m) => m.SignupComponent),
       },
       {
         path: 'add-post',
@@ -27,11 +27,44 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
     ],
-},
+  },
 
   {
     path: '',
     redirectTo: '/tabs/index',
     pathMatch: 'full',
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('../login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('../signup/signup.component').then((m) => m.SignupComponent),
+  },
+  {
+    path: 'report',
+    loadComponent: () =>
+      import('../report/report.component').then((m) => m.ReportComponent),
+  },
+  {
+    path: 'incidents',
+    loadComponent: () =>
+      import('../incidents/incidents.component').then(
+        (m) => m.IncidentsComponent
+      ),
+  },
+  {
+    path: 'incidents',
+    loadChildren: () =>
+      import('../user-incidents/user-incidents.page').then((m) => m.UserIncidentsPage),
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('../home/home.component').then((m) => m.HomeComponent),
+  }, // Placeholder for the home page
 ];

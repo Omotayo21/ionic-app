@@ -1,0 +1,40 @@
+ion-header {
+  background: #283593;
+  color: #fff;
+}
+
+.page-container {
+  padding: 16px;
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+  background-color: #fff;
+  color: black
+}
+
+ion-select {
+  width: 100%;
+  max-width: 300px;
+}
+
+ion-card {
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-title {
+  color: #283593;
+}
+
+img {
+  width: 50%;
+  height: 100px;
+  object-fit: cover;
+}

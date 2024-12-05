@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Incident Reports</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-container">
+    <p>Find specific incidents by checking the categories</p>
+    <section class="filter-section">
+      <ion-select
+        id="categoryFilter"
+        (ionChange)="filterIncidents($event.detail.value)"
+        placeholder="Select Category"
+      >
+       
+        <ion-select-option value="fire">Fire</ion-select-option>
+        <ion-select-option value="rioting">Rioting</ion-select-option>
+        <ion-select-option value="accident">Accident</ion-select-option>
+        <ion-select-option value="fighting">Fighting</ion-select-option>
+      </ion-select>
+    </section>
+
+    <ion-list>
+      <ion-item *ngFor="let incident of incidents">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ incident.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Location:</strong> {{ incident.location }}</p>
+            <p><strong>Date:</strong> {{ incident.date | date: 'mediumDate' }}</p>
+            <p>{{ incident.description }}</p>
+          <img *ngIf="incident.image" [src]="incident.image" alt="Incident Image" class="incident-image">
+
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

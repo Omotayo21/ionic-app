@@ -1,0 +1,223 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+.hero {
+  text-align: center;
+  padding: 4rem 0; /* Adjust padding as needed */
+}
+
+.hero-content {
+  max-width: 600px; /* Adjust max-width as needed */
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem; /* Adjust font size as needed */
+  margin-bottom: 1rem;
+}
+
+.hero .tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+/* Header */
+ion-header {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    text-align: center;
+    padding: 2em 0;
+}
+
+ion-header ion-toolbar {
+    --background: transparent;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.tagline {
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+}
+
+.cta-button {
+    background-color: #28a745;
+    color: white;
+    padding: 0.7em 1.5em;
+    border-radius: 50px;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #218838;
+}
+
+/* Main Content */
+ion-content {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 24px;
+    --padding-bottom: 24px;
+}
+
+.get-involved {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.get-involved h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+}
+
+.info-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+ion-card {
+    text-align: center;
+    padding: 2em;
+    border-radius: 10px;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+}
+
+ion-card ion-icon {
+    font-size: 3em;
+    color: #007BFF;
+    margin-bottom: 1em;
+}
+
+ion-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+ion-card p {
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
+}
+
+.button {
+    background-color: #007BFF;
+    color: white;
+    padding: 0.7em 1.5em;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Statistics Section */
+.statistics {
+    text-align: center;
+    padding: 3em 0;
+    background-color: #f9f9f9;
+}
+
+.stats-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 0 auto;
+}
+
+.stats-list li {
+    background: #007BFF;
+    color: white;
+    padding: 1.5em;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+
+/* Newsletter */
+.newsletter {
+    text-align: center;
+    padding: 3em 0;
+}
+
+.newsletter ion-input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1em;
+}
+
+.newsletter ion-button {
+    --background: #28a745;
+    margin-left: 1em;
+}
+
+.newsletter ion-button:hover {
+    --background: #218838;
+}
+
+/* Footer */
+ion-footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2em 0;
+}
+
+footer .social-links {
+    margin: 1em 0;
+}
+
+footer .social-links a {
+    margin: 0 1em;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+footer .social-links a:hover {
+    color: #007BFF;
+}
+
+.sign-out-button {
+    cursor: pointer;
+    padding: 1em 2em;
+    border-radius: 50px;
+    background-color: red;
+    color: white;
+    border: none;
+    transition: background-color 0.3s;
+    margin-top: 8px;
+}
+
+#sign-out-button:hover {
+    background-color: darkred;
+}
+
+h2 {
+    margin-top: 0.75em;
+}

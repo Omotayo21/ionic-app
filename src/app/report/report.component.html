@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+     <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Report an Incident</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Report a Community Incident</ion-card-title>
+      <ion-card-subtitle>
+        Please provide as much detail as possible to help us understand the situation.
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="submitIncident()" #incidentForm="ngForm">
+        <ion-item>
+          <ion-label position="stacked">Incident Type</ion-label>
+          <ion-select placeholder="Select Incident Type" [(ngModel)]="incident.type" name="incidentType" required>
+            <ion-select-option value="accident">Accident</ion-select-option>
+            <ion-select-option value="fighting">Fighting</ion-select-option>
+            <ion-select-option value="rioting">Rioting</ion-select-option>
+            <ion-select-option value="fire">Fire</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Incident Title</ion-label>
+          <ion-textarea placeholder="Enter a brief title..." [(ngModel)]="incident.title" name="title" required></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Description</ion-label>
+          <ion-textarea placeholder="Describe the incident in detail..." [(ngModel)]="incident.description" name="description" required></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Upload Image (Optional)</ion-label>
+          <input type="file" (change)="uploadImage($event)" />
+        </ion-item>
+        <ion-note>Accepted formats: JPG, PNG, GIF (Max size: 5MB)</ion-note>
+
+        <ion-button expand="block" type="submit" [disabled]="!incidentForm.form.valid">Submit Incident</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Your Incident Reports</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p>Find specific incidents by checking the categories</p>
+  
+  <ion-item>
+    <ion-label>Category</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange($event)">
+      <ion-select-option value="all">All Categories</ion-select-option>
+      <ion-select-option value="fire">Fire</ion-select-option>
+      <ion-select-option value="theft">Theft</ion-select-option>
+      <ion-select-option value="accident">Accident</ion-select-option>
+      <ion-select-option value="fighting">Fighting</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list id="incident-list">
+    <ion-item *ngFor="let incident of incidents">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ incident.title }}</ion-card-title>
+          <ion-card-subtitle>{{ incident.date | date }}</ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <p>{{ incident.description }}</p>
+         <img *ngIf="incident.image" [src]="incident.image" alt="Incident Image" class="incident-image">
+        </ion-card-content>
+        
+        <ion-button (click)="navigateToEditPage(incident.id)">
+          <ion-icon slot="start" name="create"></ion-icon>
+          Edit
+        </ion-button>
+        
+        <ion-button (click)="deleteIncident(incident.id)">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Delete
+        </ion-button>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
