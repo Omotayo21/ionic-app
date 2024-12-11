@@ -31,7 +31,8 @@
             <ion-card-title>{{ incident.title }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p><strong>Location:</strong> {{ incident.location }}</p>
+        <p>Latitude: {{ incident.location.latitude }}</p>
+    <p>Longitude: {{ incident.location.longitude }}</p>
             <p><strong>Date:</strong> {{ incident.date | date: 'mediumDate' }}</p>
             <p>{{ incident.description }}</p>
           <img *ngIf="incident.image" [src]="incident.image" alt="Incident Image" class="incident-image">

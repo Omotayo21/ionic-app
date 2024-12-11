@@ -152,8 +152,9 @@ export class UserIncidentsPage implements OnInit {
       });
   }
 
-  navigateToEditPage(incidentId: string): void {
-    this.router.navigate([`/report/${incidentId}`]);
+  editIncident(incident: any) {
+    const incidentWithId = { ...incident, id: incident.id };
+    this.router.navigate(['/report'], { state: { incident: incidentWithId } });
   }
 
   onCategoryChange(event: any): void {

@@ -32,10 +32,13 @@
         
         <ion-card-content>
           <p>{{ incident.description }}</p>
+          <p>Latitude: {{ incident.location.latitude }}</p>
+    <p>Longitude: {{ incident.location.longitude }}</p>
          <img *ngIf="incident.image" [src]="incident.image" alt="Incident Image" class="incident-image">
         </ion-card-content>
         
-        <ion-button (click)="navigateToEditPage(incident.id)">
+       <ion-button (click)="editIncident(incident)">
+
           <ion-icon slot="start" name="create"></ion-icon>
           Edit
         </ion-button>

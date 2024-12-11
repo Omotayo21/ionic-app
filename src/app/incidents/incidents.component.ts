@@ -94,6 +94,7 @@ export class IncidentsComponent implements OnInit {
     this.incidents = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
+        id: doc.id,
         ...data,
         date:
           data['timestamp'] instanceof Timestamp

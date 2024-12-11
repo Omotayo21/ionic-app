@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, doc, updateDoc } from '@angular/fire/firestore';
 import {
   Storage,
   ref as storageRef,
@@ -9,7 +9,7 @@ import {
 import { Auth, onAuthStateChanged } from '@angular/fire/auth';
 
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
   IonFooter,
@@ -72,24 +72,53 @@ import {
   ],
 })
 export class ReportComponent {
-  incident = {
+  incident: any = {
+    id: '',
     type: '',
     title: '',
     description: '',
     image: '',
     userId: '',
+    location: {
+      latitude: null as number | null,
+      longitude: null as number | null,
+    },
   };
 
   isUploading = false; // Flag to indicate if an image is being uploaded
-
+isEditMode = false;
   constructor(
     private firestore: Firestore,
     private storage: Storage,
-    private auth: Auth
-  ) {}
+    private auth: Auth,
+    private router : Router
+  ) {
+     const navState = this.router.getCurrentNavigation()?.extras.state;
+     if (navState && navState['incident']) {
+       this.isEditMode = true;
+       this.incident = navState['incident'];
+     }
+  }
+  getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.incident.location.latitude = position.coords.latitude;
+          this.incident.location.longitude = position.coords.longitude;
+        },
+        (error) => {
+          console.error('Error fetching location:', error);
+          alert('Failed to fetch location. Please allow location access.');
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+  }
 
   ngOnInit() {
     // Get the authenticated user's ID
+    this.getUserLocation();
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         this.incident.userId = user.uid; // Set userId in the incident object
@@ -148,23 +177,42 @@ export class ReportComponent {
 
     try {
       const incidentsCollection = collection(this.firestore, 'incidents'); // Firestore collection reference
+         if (this.isEditMode) {
+           // Update the existing incident
+           const incidentDocRef = doc(
+             this.firestore,
+             `incidents/${this.incident.id}`
+           );
+           await updateDoc(incidentDocRef, {
+             type: this.incident.type,
+             title: this.incident.title,
+             description: this.incident.description,
+             image: this.incident.image,
+             location: this.incident.location,
+             timestamp: new Date().toISOString(),
+           });
+           alert('Incident updated successfully!');
+         }
+      else{
       await addDoc(incidentsCollection, {
         type: this.incident.type,
         title: this.incident.title,
         description: this.incident.description,
         image: this.incident.image,
         userId: this.incident.userId, // Include userId in the document
+        location: this.incident.location,
         timestamp: new Date().toISOString(),
       });
 
       alert('Incident submitted successfully!');
-      // Reset the form
+     } 
       this.incident = {
         type: '',
         title: '',
         description: '',
         image: '',
-        userId: this.incident.userId, // Retain the userId
+        userId: this.incident.userId,
+        location: { latitude: null, longitude: null },
       };
     } catch (error) {
       console.error('Error submitting incident:', error);
